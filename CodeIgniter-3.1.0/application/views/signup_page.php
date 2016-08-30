@@ -4,6 +4,10 @@
 
 <section>
 	<?php
+	echo form_open('signup/');
+	echo "Username: " . form_input('username', set_value('username', 'Username'));
 	
+	echo form_submit('submit', 'signup');
+	echo form_close();
 	?>
 </section>
