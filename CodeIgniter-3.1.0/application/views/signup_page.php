@@ -3,7 +3,9 @@
 <h2>Create an account with us</h2>
 
 <?php echo validation_errors();?>
-<section>
+<section class="errors_here"></section>
+
+<section class="forms">
 	<?php
 	echo form_open('signup/create_user');
 	echo "Username: " . form_input('username', set_value('username', ''));
