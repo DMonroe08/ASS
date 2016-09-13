@@ -21,7 +21,11 @@ class New_users extends  CI_Model{
 		$username = $this->input->post('username');
 		
 		$newuser_insert = array(
-			'username' => $this->input->post('username')
+			'username' => $this->input->post('username'),
+			'firstname' => $this->input->post('firstname'),
+			'lastname' => $this->input->post('lastname'),
+			'email' => $this->input->post('email'),
+			'password' => $this->input->post('password')
 		); //Ends new user insert
 		$insert = $this->db->insert('users', $newuser_insert);
 	} //Ends Create User Function

@@ -1,8 +1,10 @@
+<div class="sign">
+	
 <h1> Recipe Rescue </h1>
 
 <h2>Sign In!</h2>
 
-<section>
+<section >
 	<?php
 	echo form_open('signin/signin_validation');
 	echo "Username: " . form_input('username', '');
@@ -12,3 +14,5 @@
 	?>
 	
 </section>
+
+</div>

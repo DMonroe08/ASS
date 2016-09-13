@@ -1,7 +1,7 @@
 <?php
 class Signin extends CI_Controller{
 	
-	public function load(){
+	public function load(){		
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -11,27 +11,25 @@ class Signin extends CI_Controller{
 	} //Ends Load Function
 	
 	public function signin_validation(){
+		$this->load->model('users');
+		
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'Username', 'required|callback_validate_user');
 		$this->form_validation->set_rules('password', 'Password', 'required|md5');
 		
-		if($this->form_validation->run()){
-			$data = array(
-				'username' =>$this->input->post('username'),
-				'is_signedin' =>1
-			);
-			$this->session->set_userdata($data);
-			if($this->session->userdata('is_signedin')){
+		$query = $this->users->signin_yes();
+		if(! $query){
+				$this->session->userdata('username');
 				$this->load->helper('url');
 				$this->load->view('header');
 				$this->load->view('home_page');
 				$this->load->view('footer');
-				//redirect('signin/signed_in');
+				
+				echo "working";
 			}else{
 				redirect('signin/load');
 				echo "Please Try Again";
 			} //Ends If Else Statement
-		} //Ends if Statement
 	} //Ends signin_validation Function
 	
 	public function username_good($requested_username){
