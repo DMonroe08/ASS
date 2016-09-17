@@ -11,14 +11,18 @@ class New_users extends  CI_Model{
 		$check = $this->db->get('users');
 		
 		if($check->num_rows() > 0){
-			return FALSE;
-		}else{
 			return TRUE;
+		}else{
+			return FALSE;
 		}//Ends if statement
 	}//Ends username avail function
 	
 	public function create_user(){
-		$username = $this->input->post('username');
+		
+		$username_avail = username_avail();
+		
+		if($username_avail == FALSE){
+			
 		
 		$newuser_insert = array(
 			'username' => $this->input->post('username'),
@@ -28,6 +32,10 @@ class New_users extends  CI_Model{
 			'password' => $this->input->post('password')
 		); //Ends new user insert
 		$insert = $this->db->insert('users', $newuser_insert);
+		return TRUE;
+	}else{
+		return FALSE;
+	}
 	} //Ends Create User Function
 	
 } // Ends New_users Function
