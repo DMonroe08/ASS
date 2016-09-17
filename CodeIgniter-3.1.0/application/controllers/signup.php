@@ -30,11 +30,10 @@ class Signup extends CI_Controller{
 		}else{
 			$this->load->model('new_users');
 			if($query = $this->new_users->create_user()){
-				redirect('signin/load');
+				//redirect('signin/load');
 				$data['account_created'] = 'Your account has been created. You may now sign in.';
-				//$this->load->helper('url');
-				//$this->load->helper('form');
-				//$this->load->view('home_page');
+				$this->load->helper('url');
+				$this->load->view('home_page');
 				
 				
 			} //Ends if statement

@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <?php
 class Signin extends CI_Controller{
 	
@@ -12,24 +13,28 @@ class Signin extends CI_Controller{
 	
 	public function signin_validation(){
 		$this->load->model('users');
-		
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username', 'Username', 'required|callback_validate_user');
-		$this->form_validation->set_rules('password', 'Password', 'required|md5');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		
-		$query = $this->users->signin_yes();
-		if(! $query){
-				$this->session->userdata('username');
-				$this->load->helper('url');
-				$this->load->view('header');
-				$this->load->view('home_page');
-				$this->load->view('footer');
-				
-				echo "working";
+		if($this->form_validation->run() == TRUE){
+			$this->load->model('users');
+			$query = $this->users->signin_yes();
+			
+			if($query){
+				$data = array(
+					'username' => $this->input->post('username'),
+					'password' => $this->input->post('password'),
+					'is_logged_in' => true
+				);
+				$this->session->set_userdata($data);
+				redirect('welcome/index');
 			}else{
-				redirect('signin/load');
-				echo "Please Try Again";
-			} //Ends If Else Statement
+				echo "sorry something wasn't quite right";
+				$this->load->view('signin_page');
+				
+			}
+		}
 	} //Ends signin_validation Function
 	
 	public function username_good($requested_username){
@@ -57,7 +62,19 @@ class Signin extends CI_Controller{
 		$this->load->view('footer');
 	} //Ends Load Function
 	
+	public function again(){
+		
+	}
 	
+	
+	public function is_logged_in(){
+		$is_logged_in = $this->session->set_userdata($data);
+		
+		if(isset($is_logged_in) || $is_logged_in != true){
+			echo "You don't have permission to access this page. < a href='..login'>Login</a>";
+			die();
+		}
+	}
 	
 } //Ends Signin Function
 ?>
