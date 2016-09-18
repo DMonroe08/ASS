@@ -81,6 +81,9 @@ button{
 
 
 .sign{
-	background:#D7D9DB;
+	background:rgba(215, 217, 219, 0.2);
+	border-radius: 3px;
 	padding: 20px;
+	color: #D7D9DB;
 }
+
