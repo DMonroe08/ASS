@@ -1,18 +1,4 @@
-<div class="row">
-	<div class="col-md-12" id="sceme">
-		<div class="page-header" ><h1 class="text-center">Recipe Rescue</h1></div>
-	</div><!--Ends Column MD 8 Offset 2 Div-->
-</div><!--Ends Row Div-->
-<div class="row">
-	<nav class="col-md-12">
-			<!--Navigation-->
-		<ul class="nav nav-pills nav-justified" role="nav">
-			<li role="presentation" class="active"><a class="home" href="<?php echo index_page() . '/Welcome/load';?>">Home</a></li>
-			<li role="presentation"><a class="signout" href="<?php echo index_page() . '/signin/load';?>">Sign In</a></li>
-			<li role="presentation"><a class="signout" href="<?php echo index_page() . '/signup/load';?>">Sign Up</a></li>
-		</ul>
-	</nav>
-</div>
+
 <div class="row">
 	<section class="col-md-8 col-md-offset-2">
 		<!--Welcome aessage area to hold jQuery plugin message-->

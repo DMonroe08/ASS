@@ -6,9 +6,8 @@ class Signin extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->view('header');
-		$this->load->view('signin_page');
-		$this->load->view('footer');
+		$data['content'] = 'signin_page';
+		$this->load->view('includes/template', $data);
 	} //Ends Load Function
 	
 	public function signin_validation(){
