@@ -28,22 +28,33 @@ body{
 	border-radius: 3px;
 }
 nav{
-	
 	margin: 20px auto;
 	padding: 20px;
-	border:solid 2px #ffffff;
+	border-bottom:solid 2px #ffffff;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 3px;
 }
-.nav-pills > li{
+
+nav > ul > .row > li{	
+	display: inline;
+	margin: 30px 50px;
+}
+
+.go{
+	background: #39A4DC;
+	color: #039;
+	border: solid 1px #fff;
+	padding: 10px auto;
 	border-radius: 3px;
 }
 
-nav > ul > .row > li{
-	
-	display: inline;
-	margin: 30px 50px ;
+.inactive:hover{
+	background: #fff;
+	color: #039;
+	border: solid 1px #39A4DC;
+	padding: 10px auto;
+	border-radius: 3px;
 }
 
 #welcomeMess{

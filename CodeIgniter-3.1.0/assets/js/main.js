@@ -1,5 +1,4 @@
 
-
 //Checks Validity of user data
 function checkLength(){
 	var uName = document.getElementById("username");
