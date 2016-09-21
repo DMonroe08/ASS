@@ -22,14 +22,15 @@
 </div><!--Ends Row div-->
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-<section class="text-center">
+<section class="text-center" id="forms">
+	<?php if (isset($retry)){echo $retry;}?>
 	<?php
-	echo form_open('signup/create_user');
+	echo form_open('signup/check_user');
 	
 	echo "First Name: " . form_input('firstname', set_value('firstname', '')) . "<br><br>";
 	echo "Last Name: " . form_input('lastname', set_value('lastname', '')) . "<br><br>";
 	echo "Email: " . form_input('email', set_value('email', '')) . "<br><br>";
-	echo "Username: " . form_input('username', set_value('username', '')) . "<br><br>";
+	echo "Username: " . form_input('username', set_value('username', '')) . "<div id='check'></div><br><br>";
 	echo "Password: " . form_input('password', set_value('password', '')) . "<br><br>";
 	echo "<div class='black'>" . form_submit('submit', 'signup') . "</div>";
 	echo form_close();

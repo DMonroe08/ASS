@@ -7,6 +7,21 @@ class New_users extends  CI_Model{
 	} //Ends Construct Funtion
 
 	
+	public function check_user(){
+		$this->db->where('username', $this->input->post('username'));
+		$username = ($_POST['username']);  
+		$query = $this->db->get('users');
+		
+		
+		if($query->num_rows() > 0){ //brings back how many rows of usernames
+			$row = $query->row(); 
+			return FALSE; //No existing user with that username 
+		}else{
+			return TRUE; //existing user with that username 
+		}
+		
+	}
+	
 	public function create_user(){
 		$new_member_insert_data = array(
 			'firstname' =>$this->input->post('firstname'),

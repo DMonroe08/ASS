@@ -109,3 +109,7 @@ button{
 form input{
 	color: #5A5A5B;
 }
+
+.error{
+	color: #fff;
+}

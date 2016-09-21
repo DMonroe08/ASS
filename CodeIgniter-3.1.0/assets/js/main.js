@@ -6,7 +6,7 @@ function checkLength(){
 	if (uName.checkValidity()== false){
 		document.getElementById("error_here").innerHTML = uName.validationMessage;
 	}else{
-		docutment.getElementById('forms'). innerHTML = "Welcome";	
+		document.getElementById('forms'). innerHTML = "Welcome";	
 	}	
 } //Ends Check Length Function
 
