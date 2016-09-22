@@ -24,6 +24,30 @@ class Users extends CI_Model{
 			return FALSE;
 		}
 	} //Ends Signin Yes Function
+	
+	public function users(){
+		$query = $this->db->get('data');
+		return $query->result();
+	} //Ends Users Function
+	
+	public function update_info(){
+		$this->db->where('password', md5($this->input->post('password')));
+		$row = $query->row();
+		$data = array(
+			'password' => $row->password
+		);
+		$this->db->replace('users', $data);
+		return TRUE;
+	} //Ends update info function
+	
+	public function delete_user(){
+		$this->db->where('username', $this->input->post('username'));
+		$username = ($_POST['username']);  
+ 		$this->db->from('users');
+		$this->db->delete('users', array('username' => $username));
+		
+		
+	} //Ends Delete User Function
 		
 } //Ends Users Function
 ?>

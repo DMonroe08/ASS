@@ -27,7 +27,7 @@ class Signin extends CI_Controller{
 					'is_logged_in' => true
 				);
 				$this->session->set_userdata($data);
-				redirect('welcome/index');
+				$this->signed_in();
 			}else{
 				echo "sorry something wasn't quite right";
 				$this->load->view('signin_page');
@@ -56,15 +56,9 @@ class Signin extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->view('header');
-		$this->load->view('home_page');
-		$this->load->view('footer');
+		$data['content'] = 'users_page';
+		$this->load->view('includes/template', $data);
 	} //Ends Load Function
-	
-	public function again(){
-		
-	}
-	
 	
 	public function is_logged_in(){
 		$is_logged_in = $this->session->set_userdata($data);
@@ -72,6 +66,45 @@ class Signin extends CI_Controller{
 		if(isset($is_logged_in) || $is_logged_in != true){
 			echo "You don't have permission to access this page. < a href='..login'>Login</a>";
 			die();
+		}
+	} //Ends is logged function
+	
+	public function update(){
+		$this->load->model('users');
+		$this->load->library('form_validation');
+	 	$this->form_validation->set_rules('password','Password','required|trim|');
+		$this->form_validation->set_rules('new_pw','New Password','required|trim');
+		$this->form_validation->set_rules('new_pw2','Confirm Password','required|trim|matches[new_pw]');
+			
+			if($this->form_validation->run() == TRUE){
+				$this->load->model('users');
+				$query = $this->users->update_info();
+				
+				if($this->update_info() == TRUE){
+					$message = "Update Successful";
+				
+					$this->signed_in();
+					echo $message;
+				}else{
+					$message = "Please try again";
+					$this->signed_in();
+					echo $message;
+				}
+			}else{
+				$this->load();
+				echo "Sorry please try again";
+			}
+	}
+	
+	public function delete(){
+		$this->load->model('users');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		
+		if($this->users->delete_user() == TRUE){
+			$this->load->view('welcome/index');
+			
 		}
 	}
 	
