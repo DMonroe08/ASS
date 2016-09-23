@@ -78,18 +78,17 @@ class Signin extends CI_Controller{
 			
 			if($this->form_validation->run() == TRUE){
 				$this->load->model('users');
-				$query = $this->users->update_info();
-				
-				if($query == TRUE){
-					$message = "Update Successful";
+			    $data =array( 'new_pw' => $this->input->post('password'));                   
+			    $this->main->update('users',$data);
 				
 					$this->signed_in();
+					$message = "Update Successful";
 					echo $message;
 				}else{
 					$message = "Please try again";
 					$this->signed_in();
 					echo $message;
-				}
+				
 			}
 	}
 	
@@ -101,7 +100,9 @@ class Signin extends CI_Controller{
 		
 		if($this->users->delete_user() == TRUE){
 			$this->load->helper('url');
-			$this->load->view('welcome/index');
+			$data['content'] = 'home_page';
+			$this->load->view('includes/template', $data);
+			
 			
 		}
 	}

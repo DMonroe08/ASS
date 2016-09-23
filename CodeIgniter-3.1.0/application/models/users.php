@@ -31,13 +31,11 @@ class Users extends CI_Model{
 	} //Ends Users Function
 	
 	public function update_info(){
-		$this->db->where('password', md5($this->input->post('password')));
-		$row = $query->row();
-		$data = array(
-			'new_pw' => $row->password
-		);
-		$this->db->replace('users', $data);
-		return TRUE;
+		    $this->db->where('password', md5($password));        
+		    $query = $this->db->get('users'); //data table
+			$password = 'new_pw';
+			 $this->db->update('user',array('password'=>$password,'pass_encryption'=>MD5($password)));
+		    return $query->num_rows(); 
 	} //Ends update info function
 	
 	public function delete_user(){
