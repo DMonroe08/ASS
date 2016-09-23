@@ -29,8 +29,8 @@ class Signin extends CI_Controller{
 				$this->session->set_userdata($data);
 				$this->signed_in();
 			}else{
-				echo "sorry something wasn't quite right";
-				$this->load->view('signin_page');
+				$ms = "sorry something wasn't quite right";
+				$this->load();
 				
 			}
 		}
@@ -80,7 +80,7 @@ class Signin extends CI_Controller{
 				$this->load->model('users');
 				$query = $this->users->update_info();
 				
-				if($this->update_info() == TRUE){
+				if($query == TRUE){
 					$message = "Update Successful";
 				
 					$this->signed_in();
@@ -90,9 +90,6 @@ class Signin extends CI_Controller{
 					$this->signed_in();
 					echo $message;
 				}
-			}else{
-				$this->load();
-				echo "Sorry please try again";
 			}
 	}
 	
@@ -103,6 +100,7 @@ class Signin extends CI_Controller{
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		
 		if($this->users->delete_user() == TRUE){
+			$this->load->helper('url');
 			$this->load->view('welcome/index');
 			
 		}

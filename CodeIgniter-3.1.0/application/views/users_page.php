@@ -25,9 +25,9 @@
 	<div class="col-md-6 col-md-offset-3">
 <section class="text-center">
 	<div class="forms">
-			<h3>Welcome!</h3>
+			<h3>Welcome! <?php if (isset($username));?></h3>
 			<p>Change Password</p>
-			<?php $message;?>
+			<?php if (isset($message));?>
 			<?php
 				echo form_open('signin/update');
 				echo "Old Password: " . form_input('password') . "<br><br>";

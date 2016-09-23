@@ -34,7 +34,7 @@ class Users extends CI_Model{
 		$this->db->where('password', md5($this->input->post('password')));
 		$row = $query->row();
 		$data = array(
-			'password' => $row->password
+			'new_pw' => $row->password
 		);
 		$this->db->replace('users', $data);
 		return TRUE;
@@ -46,6 +46,7 @@ class Users extends CI_Model{
  		$this->db->from('users');
 		$this->db->delete('users', array('username' => $username));
 		
+		return TRUE;
 		
 	} //Ends Delete User Function
 		

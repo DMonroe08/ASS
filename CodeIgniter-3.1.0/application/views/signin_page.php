@@ -20,9 +20,11 @@
 	?>
 			<h2 class="text-center">Sign In!</h2>
 		</div><!--Ends Column MD 6 Offset 3 div-->
+		
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<section class="text-center">
+				<h4><?php if (isset($message));?></h4>
 	<?php
 	echo form_open('signin/signin_validation');
 	echo "Username: " . form_input('username', '') . "<br><br>";
